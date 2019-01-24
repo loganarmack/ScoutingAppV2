@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/padding"
+        android:layout_marginEnd="@dimen/padding"
+        android:importantForAutofill="no"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/new_team_title_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_marginTop="@dimen/padding"
+            android:layout_marginEnd="@dimen/margin"
+            android:fontFamily="@font/roboto"
+            android:text="@string/new_team"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
+        <EditText
+            android:id="@+id/team_number_edit"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/padding"
+            android:fontFamily="@font/roboto"
+            android:hint="@string/team_number"
+            style="@style/team_name_edit_style" />
+
+        <LinearLayout
+            android:id="@+id/include_layouts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/include_layout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/include_auto_check"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="false"
+                    android:onClick="includeCheck"
+                    android:text="@string/auto"
+                    android:textSize="13sp" />
+
+                <CheckBox
+                    android:id="@+id/include_consistency_check"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="includeCheck"
+                    android:text="@string/consistency_plain"
+                    android:textSize="13sp" />
+
+                <CheckBox
+                    android:id="@+id/include_objective_check"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="includeCheck"
+                    android:text="@string/objective_plain"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/include_layout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/include_driver_skill_check"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="includeCheck"
+                    android:text="@string/driver_skill_plain"
+                    android:textSize="13sp" />
+
+                <CheckBox
+                    android:id="@+id/include_name_check"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="includeCheck"
+                    android:text="@string/team_name"
+                    android:textSize="13sp" />
+
+                <CheckBox
+                    android:id="@+id/include_notes_check"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="includeCheck"
+                    android:text="@string/notes"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/include_layout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/include_issues_check"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="includeCheck"
+                    android:text="@string/issues"
+                    android:textSize="13sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/input_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/padding"
+            android:layout_weight="0.6">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/team_name_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding"
+                    android:ems="10"
+                    android:fontFamily="@font/roboto"
+                    android:hint="@string/team_name"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPersonName" />
+
+                <TextView
+                    android:id="@+id/objective_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding"
+                    android:text="@string/objectives" />
+
+                <SeekBar
+                    android:id="@+id/objective_score_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="@integer/slider_max"
+                    android:progress="5" />
+
+                <TextView
+                    android:id="@+id/consistency_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding"
+                    android:text="@string/consistency" />
+
+                <SeekBar
+                    android:id="@+id/consistency_score_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="@integer/slider_max"
+                    android:progress="5" />
+
+                <TextView
+                    android:id="@+id/driver_skill_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding"
+                    android:text="@string/driver_skill" />
+
+                <SeekBar
+                    android:id="@+id/driver_skill_score_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="@integer/slider_max"
+                    android:progress="5" />
+
+                <TextView
+                    android:id="@+id/autonomous_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding"
+                    android:text="@string/autonomous" />
+
+                <SeekBar
+                    android:id="@+id/auto_score_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="@integer/slider_max"
+                    android:progress="5" />
+
+                <TextView
+                    android:id="@+id/defence_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding"
+                    android:text="@string/defence" />
+
+                <SeekBar
+                    android:id="@+id/defence_score_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="@integer/slider_max"
+                    android:progress="5" />
+
+                <TextView
+                    android:id="@+id/issues_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/issues"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/issues_select_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/hardware_issue_checkbox"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/hardware" />
+
+                    <CheckBox
+                        android:id="@+id/software_issue_checkbox"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/software" />
+
+                    <CheckBox
+                        android:id="@+id/other_issue_checkbox"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/other" />
+
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/issues_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/roboto"
+                    android:hint="@string/issue_description"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPersonName" />
+
+
+                <EditText
+                    android:id="@+id/notes_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding"
+                    android:layout_marginBottom="@dimen/padding"
+                    android:ems="10"
+                    android:fontFamily="@font/roboto"
+                    android:hint="@string/additional_notes"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPersonName" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/save_button"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/padding"
+            android:layout_marginBottom="@dimen/padding"
+            android:background="@color/colorAccent"
+            android:fontFamily="@font/roboto"
+            android:text="@string/save" />
+    </LinearLayout>
