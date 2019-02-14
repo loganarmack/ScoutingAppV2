@@ -22,7 +22,7 @@
     <string name="driver_skill">Driver skill: %d</string>
     <string name="autonomous">Autonomous: %d</string>
     <string name="new_team_name_number">New: Team %d: %s</string>
-    <string name="team_name_number">Team %d: %s</string>
+    <string name="team_list_element">Team %d: %s - %s</string>
     <string name="team_number_edit">Edit: Team %d</string>
     <string name="delete_team">Delete Team</string>
     <string name="error_has_occurred">An error has occurred.</string>
@@ -52,4 +52,7 @@
     <string name="view_team">View Team</string>
     <string name="mark_for_deletion">Mark for deletion</string>
     <string name="defence">Defence: %d</string>
+    <string name="defence_pain">Defence</string>
+    <string name="city_of_origin">City, province of origin</string>
+    <string name="location">Location</string>
 </resources>

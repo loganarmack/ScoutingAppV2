@@ -8,89 +8,79 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/custom_toolbar" />
+        layout="@layout/custom_toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <Button
+    <include
         android:id="@+id/new_team_button"
-        android:layout_width="0dp"
+        layout="@layout/menu_button"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/background"
-        android:elevation="4dp"
-        android:onClick="createNewTeam"
-        android:fontFamily="@font/roboto"
-        android:text="@string/new_team"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/modify_team"
+        app:layout_constraintBottom_toTopOf="@+id/divider1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar"/>
 
-    <Button
-        android:id="@+id/modify_team"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/background"
-        android:elevation="4dp"
-        android:onClick="modifyTeam"
-        android:fontFamily="@font/roboto"
-        android:text="@string/modify_team"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/view_saved"
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/divider"
+        app:layout_constraintBottom_toTopOf="@id/modify_team_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_team_button" />
+        app:layout_constraintTop_toBottomOf="@id/new_team_button" />
 
-    <Button
-        android:id="@+id/view_saved"
-        android:layout_width="0dp"
+
+    <include
+        android:id="@+id/modify_team_button"
+        layout="@layout/menu_button"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
-        android:background="@drawable/background"
-        android:elevation="4dp"
-        android:onClick="viewSavedTeams"
-        android:fontFamily="@font/roboto"
-        android:text="@string/view_saved"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/push"
+        app:layout_constraintBottom_toTopOf="@+id/divider2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modify_team" />
+        app:layout_constraintTop_toBottomOf="@+id/divider1"/>
 
-    <Button
-        android:id="@+id/push"
-        android:layout_width="0dp"
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/divider"
+        app:layout_constraintBottom_toTopOf="@id/view_saved_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/modify_team_button" />
+
+    <include
+        android:id="@+id/view_saved_button"
+        layout="@layout/menu_button"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/background"
-        android:elevation="4dp"
-        android:onClick="pushData"
-        android:fontFamily="@font/roboto"
-        android:text="@string/push"
-        android:textAllCaps="false"
-        android:textColor="@android:color/white"
-        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/divider3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider2"/>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/divider"
+        app:layout_constraintBottom_toTopOf="@id/push_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_saved_button" />
+
+    <include
+        android:id="@+id/push_button"
+        layout="@layout/menu_button"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_saved" />
+        app:layout_constraintTop_toBottomOf="@+id/divider3"/>
 </android.support.constraint.ConstraintLayout>

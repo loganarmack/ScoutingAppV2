@@ -15,7 +15,7 @@ class TeamAdapter(private val collectionsDataset: List<Team>,
     //sets content of view
     inner class TeamViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(team: Team, clickListener: (Team) -> Unit) = with(itemView) {
-            team_name.text = context.getString(R.string.team_name_number, team.number, team.name)
+            team_name.text = context.getString(R.string.team_list_element, team.number, team.name, team.location)
             setOnClickListener { clickListener(team) }
         }
     }

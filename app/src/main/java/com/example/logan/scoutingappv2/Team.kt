@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName
 //stores a team that can be easily converted to json
 class Team {
     @SerializedName("name")                 var name: String = ""
+    @SerializedName("location")             var location: String = ""
     @SerializedName("number")               var number: Int = -1
     @SerializedName("notes")                var notes: String = ""
     @SerializedName("issues")               var issues: String = ""
