@@ -7,6 +7,7 @@ import android.support.constraint.ConstraintLayout
 import android.view.View
 import android.widget.TextView
 
+//TODO: Make buttons play ripple animation when clicked
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

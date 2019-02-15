@@ -1,18 +1,13 @@
 package com.example.logan.scoutingappv2
 
-import android.animation.Animator
-import android.animation.ValueAnimator
+import android.animation.LayoutTransition
 import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.constraint.ConstraintLayout
 import android.view.View
 import android.view.animation.AnimationUtils
 import com.example.logan.scoutingappv2.databinding.ActivityModifyTeamBinding
 import kotlinx.android.synthetic.main.activity_modify_team.view.*
-import android.view.animation.Animation
-import android.view.animation.TranslateAnimation
-import android.widget.Toast
 
 
 //stores everything relating to modifying teams -- creating, editing, deleting
@@ -24,6 +19,13 @@ class ModifyTeamActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_modify_team)
+
+        //makes expand/collapse animation work without fading out of checkboxes
+        val layoutTransition = LayoutTransition()
+        layoutTransition.disableTransitionType(LayoutTransition.DISAPPEARING)
+        layoutTransition.disableTransitionType(LayoutTransition.APPEARING)
+        binding.parentLayout.layoutTransition = layoutTransition
+        binding.inputScrollLayout.layoutTransition = layoutTransition
     }
 
     //adds animation when returning to main activity
@@ -64,6 +66,9 @@ class ModifyTeamActivity : AppCompatActivity() {
             binding.includeNotesCheck.id -> {
                 binding.notesEdit.visibility = visibleOrGone(binding.includeNotesCheck.isChecked)
             }
+            binding.includeLocationCheck.id -> {
+                binding.locationEdit.visibility = visibleOrGone(binding.includeLocationCheck.isChecked)
+            }
         }
     }
 
@@ -72,7 +77,6 @@ class ModifyTeamActivity : AppCompatActivity() {
     //makes include checkboxes smaller
     fun expandCollapseCheckboxes(view: View) {
         expandedState = !expandedState
-        //TODO: Add animation
         binding.includeChecksGroup.visibility = visibleOrGone(expandedState)
         view.startAnimation(
             if (expandedState)
@@ -81,6 +85,8 @@ class ModifyTeamActivity : AppCompatActivity() {
                 AnimationUtils.loadAnimation(this, R.anim.rotate_collapse)
         )
     }
+
+    //Save teams into text file // upload if internet is available
 
     companion object {
         const val MODE = "mode"
