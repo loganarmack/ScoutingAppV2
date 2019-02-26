@@ -8,11 +8,11 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 class Team(@SerializedName("name")                 var name: String? = null,
            @SerializedName("location")             var location: String? = null,
-           @SerializedName("number")               var number: Int? = null,
+           @SerializedName("number")               var number: Int = -1,
            @SerializedName("notes")                var notes: String? = null,
            @SerializedName("issues")               var issues: String? = null,
            @SerializedName("objective_score")      var objectiveScore: Int? = null,
            @SerializedName("consistency")          var consistency: Int? = null,
            @SerializedName("driver_skill")         var driverSkill: Int? = null,
            @SerializedName("sandstorm")            var autonomous: Int? = null,
-           @SerializedName("defense")              var defense: Int? = null): Parcelable
+           @SerializedName("defence")              var defence: Int? = null): Parcelable

@@ -9,6 +9,7 @@
         android:layout_height="match_parent"
         android:layout_marginStart="@dimen/padding"
         android:layout_marginEnd="@dimen/padding"
+        android:focusableInTouchMode="true"
         android:animateLayoutChanges="true">
 
         <TextView
@@ -116,7 +117,7 @@
             android:layout_marginTop="8dp"
             android:checked="true"
             android:onClick="includeCheck"
-            android:text="@string/defence_pain"
+            android:text="@string/defence_plain"
             android:textSize="13sp"
             app:layout_constraintEnd_toStartOf="@+id/include_issues_check"
             app:layout_constraintHorizontal_bias="0.5"
@@ -398,8 +399,7 @@
                     android:id="@+id/issues_group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:constraint_referenced_ids="hardware_issue_checkbox,issues_text,software_issue_checkbox,other_issue_checkbox,issues_edit"
-                    tools:layout_editor_absoluteY="230dp" />
+                    app:constraint_referenced_ids="hardware_issue_checkbox,issues_text,software_issue_checkbox,other_issue_checkbox,issues_edit" />
 
             </android.support.constraint.ConstraintLayout>
         </ScrollView>
@@ -413,6 +413,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:onClick="onClickSaveButton"
             android:background="@color/colorAccent"
             android:fontFamily="@font/roboto"
             android:text="@string/save"

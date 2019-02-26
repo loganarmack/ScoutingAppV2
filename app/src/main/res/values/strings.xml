@@ -52,7 +52,7 @@
     <string name="view_team">View Team</string>
     <string name="mark_for_deletion">Mark for deletion</string>
     <string name="defence">Defence: %d</string>
-    <string name="defence_pain">Defence</string>
+    <string name="defence_plain">Defence</string>
     <string name="city_of_origin">City, province of origin</string>
     <string name="location">Location</string>
 </resources>
