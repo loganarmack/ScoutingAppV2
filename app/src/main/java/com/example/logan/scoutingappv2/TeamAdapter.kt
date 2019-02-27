@@ -8,14 +8,14 @@ import android.view.ViewGroup
 import kotlinx.android.synthetic.main.team_list_element.view.*
 
 //adapter for the collection list recyclerview
-class TeamAdapter(private val collectionsDataset: List<Team>,
+class TeamAdapter(private val teamDataset: ArrayList<Team>,
                   private val context: Context,
                   private val clickListener: (Team) -> Unit): RecyclerView.Adapter<TeamAdapter.TeamViewHolder>() {
 
     //sets content of view
     inner class TeamViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(team: Team, clickListener: (Team) -> Unit) = with(itemView) {
-            team_name.text = context.getString(R.string.team_list_element, team.number, team.name, team.location)
+            team_name.text = context.getString(R.string.team_list_element, team.number, team.name)
             setOnClickListener { clickListener(team) }
         }
     }
@@ -30,9 +30,14 @@ class TeamAdapter(private val collectionsDataset: List<Team>,
 
     //replace contents of view
     override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
-        holder.bind(collectionsDataset[position], clickListener)
+        holder.bind(teamDataset[position], clickListener)
     }
 
     //return size of dataset
-    override fun getItemCount() = collectionsDataset.size
+    override fun getItemCount() = teamDataset.size
+
+    fun removeAt(position: Int) {
+        teamDataset.removeAt(position)
+        notifyItemRemoved(position)
+    }
 }

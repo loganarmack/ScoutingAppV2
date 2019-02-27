@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -28,9 +29,11 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".ModifyTeamActivity"
+        <activity
+            android:name=".ModifyTeamActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
+        <activity android:name=".ViewTeamActivity"></activity>
     </application>
 
 </manifest>

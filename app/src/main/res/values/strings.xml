@@ -20,9 +20,10 @@
     <string name="objectives">Objectives: %d</string>
     <string name="consistency">Consistency: %d</string>
     <string name="driver_skill">Driver skill: %d</string>
-    <string name="autonomous">Autonomous: %d</string>
+    <string name="autonomous">Sandstorm: %d</string>
     <string name="new_team_name_number">New: Team %d: %s</string>
-    <string name="team_list_element">Team %d: %s - %s</string>
+    <string name="team_list_element_location">Team %d: %s - %s</string>
+    <string name="team_list_element">Team %d: %s</string>
     <string name="team_number_edit">Edit: Team %d</string>
     <string name="delete_team">Delete Team</string>
     <string name="error_has_occurred">An error has occurred.</string>
@@ -30,7 +31,7 @@
     <string name="select_team">Select Team</string>
     <string name="edit_team_offline">Edit Team (Offline)</string>
     <string name="notes">Notes</string>
-    <string name="auto">Autonomous</string>
+    <string name="auto">Sandstorm</string>
     <string name="consistency_plain">Consistency</string>
     <string name="driver_skill_plain">Driver skill</string>
     <string name="objective_plain">Objective</string>
@@ -55,4 +56,10 @@
     <string name="defence_plain">Defence</string>
     <string name="city_of_origin">City, province of origin</string>
     <string name="location">Location</string>
+    <string name="cargo">Cargo</string>
+    <string name="hatch">Hatch</string>
+    <string name="wheels">Wheels</string>
+    <string name="climb">Climb</string>
+    <string name="sandstorm_notes">Storm notes</string>
+    <string name="type_of_wheels">Type of wheels</string>
 </resources>

@@ -7,4 +7,6 @@
     <color name="lightGray">#AAAAAA</color>
     <color name="colorPrimaryLight">#004699</color>
     <color name="white">#FFFFFF</color>
+    <color name="colorPrimaryFaint">#A3C0F9</color>
+    <color name="darkGray">#666666</color>
 </resources>
