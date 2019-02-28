@@ -13,6 +13,7 @@ import android.widget.SeekBar
 import android.widget.Toast
 import com.example.logan.scoutingappv2.databinding.ActivityModifyTeamBinding
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_modify_team.*
 import kotlinx.android.synthetic.main.activity_modify_team.view.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -165,10 +166,73 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
                 binding.includeNotesCheck.isChecked = false
                 binding.notesEdit.visibility = visibleOrGone(binding.includeNotesCheck.isChecked)
             }
+            if (oldTeam.moveCargo == null && oldTeam.cargoMax == null && oldTeam.cargoPickup == null) {
+                binding.includeCargoCheck.isChecked = false
+                binding.inputScroll.cargo_group.visibility = visibleOrGone(binding.includeCargoCheck.isChecked)
+            }
+            if (oldTeam.moveHatch == null && oldTeam.hatchMax == null && oldTeam.hatchPickup == null) {
+                binding.includeHatchCheck.isChecked = false
+                binding.inputScroll.hatch_group.visibility = visibleOrGone(binding.includeHatchCheck.isChecked)
+            }
+            if (oldTeam.climbLevel == null && oldTeam.climbNotes == null) {
+                binding.includeClimbCheck.isChecked = false
+                binding.inputScroll.climb_group.visibility = visibleOrGone(binding.includeClimbCheck.isChecked)
+            }
+            if (oldTeam.sandstormMode == null && oldTeam.sandstormNotes == null) {
+                binding.includeSandstormNotesCheck.isChecked = false
+                binding.inputScroll.sandstorm_notes_group.visibility = visibleOrGone(binding.includeSandstormNotesCheck.isChecked)
+            }
 
             //sets edit text boxes to team data
             teamNameEdit.setText(oldTeam.name)
             notesEdit.setText(oldTeam.notes)
+            wheelsEdit.setText(oldTeam.wheelType)
+            sandstormNotesEdit.setText(oldTeam.sandstormNotes)
+            climbNotesEdit.setText(oldTeam.climbNotes)
+
+            //checks sandstorm mode, climb level, and cargo/hatch max level
+            when (oldTeam.sandstormMode) {
+                1 -> sandstormBlindModeRadio.isChecked = true
+                2 -> sandstormCameraModeRadio.isChecked = true
+                3 -> sandstormAutoModeRadio.isChecked = true
+            }
+            when (oldTeam.climbLevel) {
+                1 -> climbLevel1Radio.isChecked = true
+                2 -> climbLevel2Radio.isChecked = true
+                3 -> climbLevel3Radio.isChecked = true
+            }
+            when (oldTeam.cargoMax) {
+                1 -> cargoMax1Radio.isChecked = true
+                2 -> cargoMax2Radio.isChecked = true
+                3 -> cargoMax3Radio.isChecked = true
+            }
+            when (oldTeam.hatchMax) {
+                1 -> hatchMax1Radio.isChecked = true
+                2 -> hatchMax2Radio.isChecked = true
+                3 -> hatchMax3Radio.isChecked = true
+            }
+
+            //sets pickup locations of hatch and cargo
+            when (oldTeam.cargoPickup) {
+                1 -> cargoPickupFloorCheck.isChecked = true
+                2 -> cargoPickupHumanCheck.isChecked = true
+                3 -> {
+                    cargoPickupFloorCheck.isChecked = true
+                    cargoPickupHumanCheck.isChecked = true
+                }
+            }
+            when (oldTeam.hatchPickup) {
+                1 -> hatchPickupFloorCheck.isChecked = true
+                2 -> hatchPickupHumanCheck.isChecked = true
+                3 -> {
+                    hatchPickupFloorCheck.isChecked = true
+                    hatchPickupHumanCheck.isChecked = true
+                }
+            }
+
+            //sets whether or not robot can pick up hatch/cargo
+            moveCargoCheck.isChecked = oldTeam.moveCargo ?: false
+            moveHatchCheck.isChecked = oldTeam.moveHatch ?: false
 
             //sets sliders to correct position for team
             autoScoreSlider.progress = oldTeam.autonomous ?: 5
@@ -219,12 +283,24 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
             binding.includeNotesCheck.id -> {
                 binding.notesEdit.visibility = visibleOrGone(binding.includeNotesCheck.isChecked)
             }
+            binding.includeCargoCheck.id -> {
+                binding.cargoGroup.visibility = visibleOrGone(binding.includeCargoCheck.isChecked)
+            }
+            binding.includeHatchCheck.id -> {
+                binding.hatchGroup.visibility = visibleOrGone(binding.includeHatchCheck.isChecked)
+            }
+            binding.includeClimbCheck.id -> {
+                binding.climbGroup.visibility = visibleOrGone(binding.includeClimbCheck.isChecked)
+            }
+            binding.includeSandstormNotesCheck.id -> {
+                binding.sandstormNotesGroup.visibility = visibleOrGone(binding.includeSandstormNotesCheck.isChecked)
+            }
         }
     }
 
     private fun visibleOrGone(b: Boolean) = if (b) View.VISIBLE else View.GONE
 
-    //makes include checkboxes smaller
+    //hides/shows include checkboxes
     fun expandCollapseCheckboxes(view: View) {
         expandedState = !expandedState
         binding.includeChecksGroup.visibility = visibleOrGone(expandedState)
@@ -305,6 +381,57 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
         if (binding.includeObjectiveCheck.isChecked) {
             team.objectiveScore = binding.objectiveScoreSlider.progress
         }
+        if (binding.includeWheelsCheck.isChecked) {
+            team.wheelType = binding.wheelsEdit.text.toString()
+        }
+        if (binding.includeCargoCheck.isChecked) {
+            team.moveCargo = binding.moveCargoCheck.isChecked
+            team.cargoPickup = when {
+                binding.cargoPickupFloorCheck.isChecked && binding.cargoPickupHumanCheck.isChecked -> 3
+                binding.cargoPickupHumanCheck.isChecked -> 2
+                binding.cargoPickupFloorCheck.isChecked -> 1
+                else -> 0
+            }
+            team.cargoMax = when {
+                binding.cargoMax3Radio.isChecked -> 3
+                binding.cargoMax2Radio.isChecked -> 2
+                binding.cargoMax1Radio.isChecked -> 1
+                else -> 0
+            }
+        }
+        if (binding.includeHatchCheck.isChecked) {
+            team.moveHatch = binding.moveHatchCheck.isChecked
+            team.hatchPickup = when {
+                binding.hatchPickupFloorCheck.isChecked && binding.hatchPickupHumanCheck.isChecked -> 3
+                binding.hatchPickupHumanCheck.isChecked -> 2
+                binding.hatchPickupFloorCheck.isChecked -> 1
+                else -> 0
+            }
+            team.hatchMax = when {
+                binding.hatchMax3Radio.isChecked -> 3
+                binding.hatchMax2Radio.isChecked -> 2
+                binding.hatchMax1Radio.isChecked -> 1
+                else -> 0
+            }
+        }
+        if (binding.includeClimbCheck.isChecked) {
+            team.climbNotes = binding.climbNotesEdit.text.toString()
+            team.climbLevel = when {
+                binding.climbLevel1Radio.isChecked -> 1
+                binding.climbLevel2Radio.isChecked -> 2
+                binding.climbLevel3Radio.isChecked -> 3
+                else -> 0
+            }
+        }
+        if (binding.includeSandstormNotesCheck.isChecked) {
+            team.sandstormNotes = binding.sandstormNotesEdit.text.toString()
+            team.sandstormMode = when {
+                binding.sandstormBlindModeRadio.isChecked -> 1
+                binding.sandstormCameraModeRadio.isChecked -> 2
+                binding.sandstormAutoModeRadio.isChecked -> 3
+                else -> null
+            }
+        }
         return 0
     }
 
@@ -328,6 +455,8 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
                 binding.teamNumberEdit.text.clear()
                 binding.issuesEdit.text.clear()
                 binding.notesEdit.text.clear()
+                binding.sandstormNotesEdit.text.clear()
+                binding.climbNotesEdit.text.clear()
                 //reset check boxes
                 binding.hardwareIssueCheckbox.isChecked = false
                 binding.softwareIssueCheckbox.isChecked = false

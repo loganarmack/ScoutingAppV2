@@ -374,17 +374,353 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/defence_text" />
 
+                <!-- Cargo group -->
                 <TextView
-                    android:id="@+id/issues_text"
+                    android:id="@+id/cargo_text"
+                    style="@style/data_input_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/cargo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/defence_score_slider" />
+
+                <CheckBox
+                    android:id="@+id/move_cargo_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:checked="true"
+                    android:onClick="includeCheck"
+                    app:layout_constraintBottom_toBottomOf="@+id/cargo_text"
+                    app:layout_constraintStart_toEndOf="@+id/cargo_text"
+                    app:layout_constraintTop_toTopOf="@+id/cargo_text" />
+
+                <TextView
+                    android:id="@+id/cargo_max_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/highest_level"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/cargo_max_radio_group"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cargo_text" />
+
+                <RadioGroup
+                    android:id="@+id/cargo_max_radio_group"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/cargo_max_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/cargo_max_text"
+                    app:layout_constraintTop_toTopOf="@+id/cargo_max_text">
+
+                    <RadioButton
+                        android:id="@+id/cargo_max_1_radio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1" />
+
+                    <RadioButton
+                        android:id="@+id/cargo_max_3_radio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="2" />
+
+                    <RadioButton
+                        android:id="@+id/cargo_max_2_radio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="3" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/cargo_pickup_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/pickup_locations"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cargo_max_text" />
+
+                <CheckBox
+                    android:id="@+id/cargo_pickup_floor_check"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/floor"
+                    app:layout_constraintEnd_toStartOf="@+id/cargo_pickup_human_check"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/cargo_pickup_text"
+                    app:layout_constraintStart_toStartOf="@+id/cargo_max_radio_group"
+                    app:layout_constraintTop_toBottomOf="@+id/cargo_max_radio_group" />
+
+                <CheckBox
+                    android:id="@+id/cargo_pickup_human_check"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/human"
+                    app:layout_constraintEnd_toEndOf="@+id/cargo_max_radio_group"
+                    app:layout_constraintStart_toEndOf="@+id/cargo_pickup_floor_check"
+                    app:layout_constraintTop_toBottomOf="@+id/cargo_max_radio_group" />
+
+                <!-- Hatch group -->
+                <TextView
+                    android:id="@+id/hatch_text"
+                    style="@style/data_input_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/hatch"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cargo_pickup_floor_check" />
+
+                <CheckBox
+                    android:id="@+id/move_hatch_check"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:checked="true"
+                    android:onClick="includeCheck"
+                    app:layout_constraintBottom_toBottomOf="@+id/hatch_text"
+                    app:layout_constraintStart_toEndOf="@+id/hatch_text"
+                    app:layout_constraintTop_toTopOf="@+id/hatch_text" />
+
+                <TextView
+                    android:id="@+id/hatch_max_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/highest_level"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/hatch_max_radio_group"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/hatch_text" />
+
+                <RadioGroup
+                    android:id="@+id/hatch_max_radio_group"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/hatch_max_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/hatch_max_text"
+                    app:layout_constraintTop_toTopOf="@+id/hatch_max_text">
+
+                    <RadioButton
+                        android:id="@+id/hatch_max_1_radio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="1" />
+
+                    <RadioButton
+                        android:id="@+id/hatch_max_3_radio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="2" />
+
+                    <RadioButton
+                        android:id="@+id/hatch_max_2_radio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="3" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/hatch_pickup_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/pickup_locations"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/hatch_max_text" />
+
+                <CheckBox
+                    android:id="@+id/hatch_pickup_floor_check"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/floor"
+                    app:layout_constraintEnd_toStartOf="@+id/hatch_pickup_human_check"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/hatch_pickup_text"
+                    app:layout_constraintStart_toStartOf="@+id/hatch_max_radio_group"
+                    app:layout_constraintTop_toBottomOf="@+id/hatch_max_radio_group" />
+
+                <CheckBox
+                    android:id="@+id/hatch_pickup_human_check"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/human"
+                    app:layout_constraintEnd_toEndOf="@+id/hatch_max_radio_group"
+                    app:layout_constraintStart_toEndOf="@+id/hatch_pickup_floor_check"
+                    app:layout_constraintTop_toBottomOf="@+id/hatch_max_radio_group" />
+
+                <!-- Climb group -->
+                <TextView
+                    android:id="@+id/climb_text"
+                    style="@style/data_input_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/climb"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/hatch_pickup_floor_check" />
+
+                <TextView
+                    android:id="@+id/climb_level_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/climb_level"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toStartOf="@+id/climb_level_radio_group"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/climb_text" />
+
+                <RadioGroup
+                    android:id="@+id/climb_level_radio_group"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/climb_level_text"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/climb_level_text"
+                    app:layout_constraintTop_toTopOf="@+id/climb_level_text">
+
+                    <RadioButton
+                        android:id="@+id/climb_level_1_radio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/level_1" />
+
+                    <RadioButton
+                        android:id="@+id/climb_level_2_radio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/level_2" />
+
+                    <RadioButton
+                        android:id="@+id/climb_level_3_radio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/level_3" />
+
+                </RadioGroup>
+
+                <EditText
+                    android:id="@+id/climb_notes_edit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:ems="10"
                     android:fontFamily="@font/roboto"
-                    android:text="@string/issues"
-                    android:textSize="18sp"
+                    android:hint="@string/climb_notes"
+                    android:imeOptions="actionDone"
+                    android:inputType="textMultiLine"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/defence_score_slider" />
+                    app:layout_constraintTop_toBottomOf="@+id/climb_level_radio_group" />
+
+                <!-- Sandstorm extras group -->
+                <TextView
+                    android:id="@+id/sandstorm_text"
+                    style="@style/data_input_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/sandstorm"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/climb_notes_edit" />
+
+                <RadioGroup
+                    android:id="@+id/sandstorm_mode_radio_group"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sandstorm_text">
+
+                    <RadioButton
+                        android:id="@+id/sandstorm_blind_mode_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/blind" />
+
+                    <RadioButton
+                        android:id="@+id/sandstorm_camera_mode_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/camera" />
+
+                    <RadioButton
+                        android:id="@+id/sandstorm_auto_mode_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/auto_short" />
+
+                </RadioGroup>
+
+                <EditText
+                    android:id="@+id/sandstorm_notes_edit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:ems="10"
+                    android:fontFamily="@font/roboto"
+                    android:hint="@string/sandstorm_notes"
+                    android:imeOptions="actionDone"
+                    android:inputType="textMultiLine"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sandstorm_mode_radio_group" />
+
+                <!-- Issues group -->
+                <TextView
+                    android:id="@+id/issues_text"
+                    style="@style/data_input_textview"
+                    android:text="@string/issues"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sandstorm_notes_edit"
+                    tools:layout_editor_absoluteY="575dp" />
 
                 <CheckBox
                     android:id="@+id/hardware_issue_checkbox"
@@ -424,7 +760,7 @@
                     android:fontFamily="@font/roboto"
                     android:hint="@string/issue_description"
                     android:imeOptions="actionDone"
-                    android:inputType="textPersonName"
+                    android:inputType="textMultiLine"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/software_issue_checkbox" />
@@ -439,10 +775,34 @@
                     android:fontFamily="@font/roboto"
                     android:hint="@string/additional_notes"
                     android:imeOptions="actionDone"
-                    android:inputType="textPersonName"
+                    android:inputType="textMultiLine"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/issues_edit" />
+
+                <android.support.constraint.Group
+                    android:id="@+id/cargo_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="cargo_pickup_text,cargo_max_text,cargo_pickup_floor_check,cargo_text,move_cargo_check,cargo_max_radio_group,cargo_pickup_human_check" />
+
+                <android.support.constraint.Group
+                    android:id="@+id/hatch_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="hatch_max_radio_group,hatch_pickup_human_check,move_hatch_check,hatch_text,hatch_max_text,hatch_pickup_floor_check,hatch_pickup_text" />
+
+                <android.support.constraint.Group
+                    android:id="@+id/climb_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="climb_notes_edit,climb_text,climb_level_text,climb_level_radio_group" />
+
+                <android.support.constraint.Group
+                    android:id="@+id/sandstorm_notes_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="sandstorm_text,sandstorm_mode_radio_group,sandstorm_notes_edit,sandstorm_mode_text" />
 
                 <android.support.constraint.Group
                     android:id="@+id/issues_group"

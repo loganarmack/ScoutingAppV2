@@ -60,6 +60,21 @@
     <string name="hatch">Hatch</string>
     <string name="wheels">Wheels</string>
     <string name="climb">Climb</string>
-    <string name="sandstorm_notes">Storm notes</string>
+    <string name="sandstorm_notes">Sandstorm notes</string>
     <string name="type_of_wheels">Type of wheels</string>
+    <string name="highest_level">Highest level:</string>
+    <string name="pickup_locations">Pickup locations:</string>
+    <string name="floor">Floor</string>
+    <string name="human">Human</string>
+    <string name="piles">Piles</string>
+    <string name="climb_level">Climb level:</string>
+    <string name="level_3">3</string>
+    <string name="level_2">2</string>
+    <string name="level_1">1</string>
+    <string name="climb_notes">Climb notes</string>
+    <string name="blind">Blind</string>
+    <string name="camera">Camera</string>
+    <string name="auto_short">Auto</string>
+    <string name="sandstorm_mode">Sandstorm mode:</string>
+    <string name="sandstorm">Sandstorm</string>
 </resources>
