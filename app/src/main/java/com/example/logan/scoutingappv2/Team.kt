@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 //stores a team that can be easily converted to json
 @Parcelize
 class Team(@SerializedName("name")                 var name: String? = null,
-           @SerializedName("wheelType")            var wheelType: String? = null,
+           @SerializedName("wheel_type")            var wheelType: String? = null,
            @SerializedName("number")               var number: Int = -1,
            @SerializedName("notes")                var notes: String? = null,
            @SerializedName("issues")               var issues: String? = null,

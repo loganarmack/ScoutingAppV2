@@ -1,7 +1,6 @@
 package com.example.logan.scoutingappv2
 
 import android.content.Intent
-import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.constraint.ConstraintLayout
@@ -17,7 +16,7 @@ import java.io.File
 import java.io.FileNotFoundException
 import android.support.v4.content.ContextCompat
 import android.view.WindowManager
-
+import com.example.logan.scoutingappv2.ViewTeamActivity.Companion.toast
 
 
 class MainActivity : AppCompatActivity() {
@@ -96,6 +95,11 @@ class MainActivity : AppCompatActivity() {
         val accessor = APIAccessor()
 
         val file = File(letDirectory, "teams.txt")
+        if (!file.exists()) {
+            toast("No data to push!", this@MainActivity)
+            return
+        }
+
         val gson = Gson()
 
         //adds team to upload to upload list
@@ -106,6 +110,8 @@ class MainActivity : AppCompatActivity() {
         }
         var callbackCount = 0 //stores current number of received callbacks
         var displayedNoInternet = false
+
+
         //loops through each team in the teams.txt file
         for (i in teams) {
             try {

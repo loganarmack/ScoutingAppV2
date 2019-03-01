@@ -160,7 +160,7 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
             }
             if (oldTeam.issues == null) {
                 binding.includeIssuesCheck.isChecked = false
-                binding.inputScroll.issues_group.visibility = visibleOrGone(binding.includeIssuesCheck.isChecked)
+                binding.issuesGroup.visibility = visibleOrGone(binding.includeIssuesCheck.isChecked)
             }
             if (oldTeam.notes == null) {
                 binding.includeNotesCheck.isChecked = false
@@ -168,19 +168,23 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
             }
             if (oldTeam.moveCargo == null && oldTeam.cargoMax == null && oldTeam.cargoPickup == null) {
                 binding.includeCargoCheck.isChecked = false
-                binding.inputScroll.cargo_group.visibility = visibleOrGone(binding.includeCargoCheck.isChecked)
+                binding.cargoGroup.visibility = visibleOrGone(binding.includeCargoCheck.isChecked)
             }
             if (oldTeam.moveHatch == null && oldTeam.hatchMax == null && oldTeam.hatchPickup == null) {
                 binding.includeHatchCheck.isChecked = false
-                binding.inputScroll.hatch_group.visibility = visibleOrGone(binding.includeHatchCheck.isChecked)
+                binding.hatchGroup.visibility = visibleOrGone(binding.includeHatchCheck.isChecked)
             }
             if (oldTeam.climbLevel == null && oldTeam.climbNotes == null) {
                 binding.includeClimbCheck.isChecked = false
-                binding.inputScroll.climb_group.visibility = visibleOrGone(binding.includeClimbCheck.isChecked)
+                binding.climbGroup.visibility = visibleOrGone(binding.includeClimbCheck.isChecked)
             }
             if (oldTeam.sandstormMode == null && oldTeam.sandstormNotes == null) {
                 binding.includeSandstormNotesCheck.isChecked = false
-                binding.inputScroll.sandstorm_notes_group.visibility = visibleOrGone(binding.includeSandstormNotesCheck.isChecked)
+                binding.sandstormNotesGroup.visibility = visibleOrGone(binding.includeSandstormNotesCheck.isChecked)
+            }
+            if (oldTeam.wheelType == null) {
+                binding.includeWheelsCheck.isChecked = false
+                binding.wheelsEdit.visibility = visibleOrGone(binding.includeWheelsCheck.isChecked)
             }
 
             //sets edit text boxes to team data
@@ -294,6 +298,9 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
             }
             binding.includeSandstormNotesCheck.id -> {
                 binding.sandstormNotesGroup.visibility = visibleOrGone(binding.includeSandstormNotesCheck.isChecked)
+            }
+            binding.includeWheelsCheck.id -> {
+                binding.wheelsEdit.visibility = visibleOrGone(binding.includeWheelsCheck.isChecked)
             }
         }
     }
