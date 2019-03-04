@@ -36,99 +36,15 @@
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/roboto"
             android:hint="@string/team_number"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/new_team_title_text" />
 
         <CheckBox
-            android:id="@+id/include_auto_check"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:checked="false"
-            android:onClick="includeCheck"
-            android:text="@string/auto"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/include_driver_skill_check"
-            app:layout_constraintTop_toTopOf="@+id/include_consistency_check" />
-
-        <CheckBox
-            android:id="@+id/include_wheels_check"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:onClick="includeCheck"
-            android:text="@string/wheels"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toStartOf="@+id/include_objective_check"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/include_name_check"
-            app:layout_constraintTop_toTopOf="@+id/include_name_check" />
-
-        <CheckBox
-            android:id="@+id/include_consistency_check"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:checked="false"
-            android:onClick="includeCheck"
-            android:text="@string/consistency_plain"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toStartOf="@+id/include_driver_skill_check"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include_name_check" />
-
-        <CheckBox
-            android:id="@+id/include_objective_check"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:checked="false"
-            android:onClick="includeCheck"
-            android:text="@string/objective_plain"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/include_wheels_check"
-            app:layout_constraintTop_toTopOf="@+id/include_name_check" />
-
-        <CheckBox
-            android:id="@+id/include_driver_skill_check"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:onClick="includeCheck"
-            android:text="@string/driver_skill_plain"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toStartOf="@+id/include_auto_check"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/include_consistency_check"
-            app:layout_constraintTop_toTopOf="@+id/include_consistency_check" />
-
-        <CheckBox
-            android:id="@+id/include_defence_check"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:checked="false"
-            android:onClick="includeCheck"
-            android:text="@string/defence_plain"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toStartOf="@+id/include_issues_check"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include_consistency_check" />
-
-        <CheckBox
             android:id="@+id/include_name_check"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:checked="true"
             android:onClick="includeCheck"
@@ -140,18 +56,85 @@
             app:layout_constraintTop_toBottomOf="@+id/team_number_edit" />
 
         <CheckBox
-            android:id="@+id/include_notes_check"
+            android:id="@+id/include_wheels_check"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
             android:checked="true"
             android:onClick="includeCheck"
-            android:text="@string/notes"
+            android:text="@string/wheels"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@+id/include_driver_skill_check"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/include_name_check"
+            app:layout_constraintTop_toTopOf="@+id/include_name_check" />
+
+        <CheckBox
+            android:id="@+id/include_driver_skill_check"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:onClick="includeCheck"
+            android:text="@string/driver_skill_plain"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/include_issues_check"
-            app:layout_constraintTop_toTopOf="@+id/include_defence_check" />
+            app:layout_constraintStart_toEndOf="@+id/include_wheels_check"
+            app:layout_constraintTop_toTopOf="@+id/include_name_check" />
+
+        <CheckBox
+            android:id="@+id/include_cargo_check"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:checked="true"
+            android:onClick="includeCheck"
+            android:text="@string/cargo"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@+id/include_hatch_check"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include_name_check" />
+
+        <CheckBox
+            android:id="@+id/include_hatch_check"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:onClick="includeCheck"
+            android:text="@string/hatch"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@+id/include_climb_check"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/include_cargo_check"
+            app:layout_constraintTop_toTopOf="@+id/include_cargo_check" />
+
+        <CheckBox
+            android:id="@+id/include_climb_check"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:onClick="includeCheck"
+            android:text="@string/climb"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/include_hatch_check"
+            app:layout_constraintTop_toTopOf="@+id/include_cargo_check" />
+
+        <CheckBox
+            android:id="@+id/include_sandstorm_check"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:checked="true"
+            android:onClick="includeCheck"
+            android:text="@string/sandstorm"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@+id/include_issues_check"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include_cargo_check" />
 
         <CheckBox
             android:id="@+id/include_issues_check"
@@ -163,61 +146,21 @@
             android:textSize="13sp"
             app:layout_constraintEnd_toStartOf="@+id/include_notes_check"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/include_defence_check"
-            app:layout_constraintTop_toTopOf="@+id/include_defence_check" />
+            app:layout_constraintStart_toEndOf="@+id/include_sandstorm_check"
+            app:layout_constraintTop_toTopOf="@+id/include_sandstorm_check" />
 
         <CheckBox
-            android:id="@+id/include_cargo_check"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:checked="true"
-            android:onClick="includeCheck"
-            android:text="@string/cargo"
-            app:layout_constraintEnd_toStartOf="@+id/include_hatch_check"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include_defence_check" />
-
-        <CheckBox
-            android:id="@+id/include_hatch_check"
+            android:id="@+id/include_notes_check"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:checked="true"
             android:onClick="includeCheck"
-            android:text="@string/hatch"
-            app:layout_constraintEnd_toStartOf="@+id/include_climb_check"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/include_cargo_check"
-            app:layout_constraintTop_toTopOf="@+id/include_cargo_check" />
-
-        <CheckBox
-            android:id="@+id/include_sandstorm_notes_check"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:checked="true"
-            android:onClick="includeCheck"
-            android:text="@string/sandstorm_notes"
-            app:layout_constraintEnd_toStartOf="@+id/include_hatch_check"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include_cargo_check" />
-
-        <CheckBox
-            android:id="@+id/include_climb_check"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:checked="true"
-            android:onClick="includeCheck"
-            android:text="@string/climb"
+            android:text="@string/notes"
+            android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/include_hatch_check"
-            app:layout_constraintTop_toTopOf="@+id/include_cargo_check" />
+            app:layout_constraintStart_toEndOf="@+id/include_issues_check"
+            app:layout_constraintTop_toTopOf="@+id/include_sandstorm_check" />
 
         <ImageButton
             android:id="@+id/expand_collapse_button"
@@ -230,7 +173,7 @@
             android:onClick="expandCollapseCheckboxes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include_sandstorm_notes_check"
+            app:layout_constraintTop_toBottomOf="@+id/include_sandstorm_check"
             app:srcCompat="@drawable/ic_keyboard_arrow_down" />
 
         <Button
@@ -255,7 +198,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:constraint_referenced_ids="include_name_check,include_consistency_check,include_defence_check,include_notes_check,include_auto_check,include_driver_skill_check,include_objective_check,include_wheels_check,include_issues_check,include_sandstorm_notes_check,include_climb_check,include_cargo_check,include_hatch_check" />
+            app:constraint_referenced_ids="include_name_check,include_notes_check,include_driver_skill_check,include_wheels_check,include_issues_check,include_climb_check,include_cargo_check,include_hatch_check,include_sandstorm_check" />
 
         <ScrollView
             android:id="@+id/input_scroll"
@@ -302,115 +245,19 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/team_name_edit" />
 
-                <TextView
-                    android:id="@+id/objective_text"
+                <EditText
+                    android:id="@+id/driver_experience_edit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/objectives"
-                    android:visibility="gone"
+                    android:ems="10"
+                    android:fontFamily="@font/roboto"
+                    android:hint="@string/driver_experience"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/wheels_edit" />
-
-                <SeekBar
-                    android:id="@+id/objective_score_slider"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:max="@integer/slider_max"
-                    android:progress="5"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/objective_text" />
-
-                <TextView
-                    android:id="@+id/consistency_text"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/consistency"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/objective_score_slider" />
-
-                <SeekBar
-                    android:id="@+id/consistency_score_slider"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:max="@integer/slider_max"
-                    android:progress="5"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/consistency_text" />
-
-                <TextView
-                    android:id="@+id/driver_skill_text"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/driver_skill"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/consistency_score_slider" />
-
-                <SeekBar
-                    android:id="@+id/driver_skill_score_slider"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:max="@integer/slider_max"
-                    android:progress="5"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/driver_skill_text" />
-
-                <TextView
-                    android:id="@+id/autonomous_text"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/autonomous"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/driver_skill_score_slider" />
-
-                <SeekBar
-                    android:id="@+id/auto_score_slider"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:max="@integer/slider_max"
-                    android:progress="5"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/autonomous_text" />
-
-                <TextView
-                    android:id="@+id/defence_text"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/defence"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/auto_score_slider" />
-
-                <SeekBar
-                    android:id="@+id/defence_score_slider"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:max="@integer/slider_max"
-                    android:progress="5"
-                    android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/defence_text" />
 
                 <!-- Cargo group -->
                 <TextView
@@ -421,7 +268,7 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/cargo"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/defence_score_slider" />
+                    app:layout_constraintTop_toBottomOf="@+id/driver_experience_edit" />
 
                 <CheckBox
                     android:id="@+id/move_cargo_check"
@@ -688,6 +535,7 @@
                     android:imeOptions="actionDone"
                     android:inputType="textMultiLine"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/climb_level_radio_group" />
 
@@ -852,6 +700,5 @@
 
             </android.support.constraint.ConstraintLayout>
         </ScrollView>
-
     </android.support.constraint.ConstraintLayout>
 </layout>

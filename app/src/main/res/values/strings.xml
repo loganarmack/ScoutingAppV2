@@ -93,4 +93,6 @@
     <string name="successful_upload">Successfully uploaded team data</string>
     <string name="data_saved">Data saved to text file.</string>
     <string name="failed_to_upload">Failed to upload team data!</string>
+    <string name="driver_experience">Driver experience (yrs)</string>
+    <string name="invalid_driver_exp">Invalid driver experience!</string>
 </resources>

@@ -21,7 +21,7 @@ import java.lang.reflect.Field
 
 
 //stores everything relating to creating/editing teams
-class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
+class ModifyTeamActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityModifyTeamBinding
     private var mode = 0
@@ -40,12 +40,6 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
         binding.parentLayout.layoutTransition = layoutTransition
         binding.inputScrollLayout.layoutTransition = layoutTransition
 
-        //sets up update event for when slider moves
-        binding.autoScoreSlider.setOnSeekBarChangeListener(this)
-        binding.consistencyScoreSlider.setOnSeekBarChangeListener(this)
-        binding.driverSkillScoreSlider.setOnSeekBarChangeListener(this)
-        binding.objectiveScoreSlider.setOnSeekBarChangeListener(this)
-
         //runs additional setup based on mode
         mode = intent.getIntExtra(MODE, 0)
         when (mode) {
@@ -60,54 +54,9 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right)
     }
 
-    override fun onStopTrackingTouch(seekBar: SeekBar) {}
-    override fun onStartTrackingTouch(seekBar: SeekBar?) {}
-
-    //changes slider text when they are moved
-    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-        if (seekBar != null) {
-            when (seekBar.id){
-                binding.autoScoreSlider.id -> {
-                    binding.autonomousText.text = getString(R.string.autonomous, seekBar.progress)
-                }
-                binding.consistencyScoreSlider.id -> {
-                    binding.consistencyText.text = getString(R.string.consistency, seekBar.progress)
-                }
-                binding.defenceScoreSlider.id -> {
-                    binding.defenceText.text = getString(R.string.defence, seekBar.progress)
-                }
-                binding.driverSkillScoreSlider.id -> {
-                    binding.driverSkillText.text = getString(R.string.driver_skill, seekBar.progress)
-                }
-                binding.objectiveScoreSlider.id -> {
-                    binding.objectiveText.text = getString(R.string.objectives, seekBar.progress)
-                }
-            }
-        }
-    }
-
     private fun newTeamModeInit() {
         binding.newTeamTitleText.text = getString(R.string.new_team)
         binding.teamNumberEdit.visibility = View.VISIBLE
-
-        //sets all sliders to 5
-        resetSliders(5)
-    }
-
-    //resets all sliders to i
-    private fun resetSliders(i: Int) {
-        binding.apply {
-            autonomousText.text = getString(R.string.autonomous, i)
-            autoScoreSlider.progress = i
-            consistencyText.text = getString(R.string.consistency, i)
-            consistencyScoreSlider.progress = i
-            defenceText.text = getString(R.string.defence, i)
-            defenceScoreSlider.progress = i
-            driverSkillText.text = getString(R.string.driver_skill, i)
-            driverSkillScoreSlider.progress = i
-            objectiveText.text = getString(R.string.objectives, i)
-            objectiveScoreSlider.progress = i
-        }
     }
 
     private fun modifyTeamModeInit() {
@@ -125,32 +74,14 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
                 otherIssueCheckbox.isChecked = issueSplit[0].contains("other", true)
                 issuesEdit.setText(issueSplit[1])
             }
+            else {
+                issuesEdit.setText(oldTeam.issues)
+            }
 
             //sets checkboxes to enabled/disabled
-            if (oldTeam.autonomous == null) {
-                binding.includeAutoCheck.isChecked = false
-                binding.autoScoreSlider.visibility = visibleOrGone(binding.includeAutoCheck.isChecked)
-                binding.autonomousText.visibility =  visibleOrGone(binding.includeAutoCheck.isChecked)
-            }
-            if (oldTeam.consistency == null) {
-                binding.includeConsistencyCheck.isChecked = false
-                binding.consistencyScoreSlider.visibility = visibleOrGone(binding.includeConsistencyCheck.isChecked)
-                binding.consistencyText.visibility =  visibleOrGone(binding.includeConsistencyCheck.isChecked)
-            }
             if (oldTeam.driverSkill == null) {
                 binding.includeDriverSkillCheck.isChecked = false
-                binding.driverSkillScoreSlider.visibility = visibleOrGone(binding.includeDriverSkillCheck.isChecked)
-                binding.driverSkillText.visibility =  visibleOrGone(binding.includeDriverSkillCheck.isChecked)
-            }
-            if (oldTeam.objectiveScore == null) {
-                binding.includeObjectiveCheck.isChecked = false
-                binding.objectiveScoreSlider.visibility = visibleOrGone(binding.includeObjectiveCheck.isChecked)
-                binding.objectiveText.visibility =  visibleOrGone(binding.includeObjectiveCheck.isChecked)
-            }
-            if (oldTeam.defence == null) {
-                binding.includeDefenceCheck.isChecked = false
-                binding.defenceScoreSlider.visibility = visibleOrGone(binding.includeDefenceCheck.isChecked)
-                binding.defenceText.visibility = visibleOrGone(binding.includeDefenceCheck.isChecked)
+                binding.driverExperienceEdit.visibility =  visibleOrGone(binding.includeDriverSkillCheck.isChecked)
             }
             if (oldTeam.name == null) {
                 binding.includeNameCheck.isChecked = false
@@ -177,8 +108,8 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
                 binding.climbGroup.visibility = visibleOrGone(binding.includeClimbCheck.isChecked)
             }
             if (oldTeam.sandstormMode == null && oldTeam.sandstormNotes == null) {
-                binding.includeSandstormNotesCheck.isChecked = false
-                binding.sandstormNotesGroup.visibility = visibleOrGone(binding.includeSandstormNotesCheck.isChecked)
+                binding.includeSandstormCheck.isChecked = false
+                binding.sandstormNotesGroup.visibility = visibleOrGone(binding.includeSandstormCheck.isChecked)
             }
             if (oldTeam.wheelType == null) {
                 binding.includeWheelsCheck.isChecked = false
@@ -236,18 +167,6 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
             moveCargoCheck.isChecked = oldTeam.moveCargo ?: false
             moveHatchCheck.isChecked = oldTeam.moveHatch ?: false
 
-            //sets sliders to correct position for team
-            autoScoreSlider.progress = oldTeam.autonomous ?: 5
-            autonomousText.text = getString(R.string.autonomous, autoScoreSlider.progress)
-            consistencyScoreSlider.progress = oldTeam.consistency ?: 5
-            consistencyText.text = getString(R.string.consistency, consistencyScoreSlider.progress)
-            defenceScoreSlider.progress = oldTeam.defence ?: 5
-            defenceText.text = getString(R.string.defence, defenceScoreSlider.progress)
-            driverSkillScoreSlider.progress = oldTeam.driverSkill ?: 5
-            driverSkillText.text = getString(R.string.driver_skill, driverSkillScoreSlider.progress)
-            objectiveScoreSlider.progress = oldTeam.objectiveScore ?: 5
-            objectiveText.text = getString(R.string.objectives, objectiveScoreSlider.progress)
-
             inputScroll.visibility = View.VISIBLE
         }
         team.number = oldTeam.number
@@ -256,25 +175,8 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
     //makes team modification sections visible/invisible
     fun includeCheck(view: View) {
         when (view.id) {
-            binding.includeAutoCheck.id -> {
-                binding.autoScoreSlider.visibility = visibleOrGone(binding.includeAutoCheck.isChecked)
-                binding.autonomousText.visibility =  visibleOrGone(binding.includeAutoCheck.isChecked)
-            }
-            binding.includeConsistencyCheck.id -> {
-                binding.consistencyScoreSlider.visibility = visibleOrGone(binding.includeConsistencyCheck.isChecked)
-                binding.consistencyText.visibility =  visibleOrGone(binding.includeConsistencyCheck.isChecked)
-            }
             binding.includeDriverSkillCheck.id -> {
-                binding.driverSkillScoreSlider.visibility = visibleOrGone(binding.includeDriverSkillCheck.isChecked)
-                binding.driverSkillText.visibility =  visibleOrGone(binding.includeDriverSkillCheck.isChecked)
-            }
-            binding.includeObjectiveCheck.id -> {
-                binding.objectiveScoreSlider.visibility = visibleOrGone(binding.includeObjectiveCheck.isChecked)
-                binding.objectiveText.visibility =  visibleOrGone(binding.includeObjectiveCheck.isChecked)
-            }
-            binding.includeDefenceCheck.id -> {
-                binding.defenceScoreSlider.visibility = visibleOrGone(binding.includeDefenceCheck.isChecked)
-                binding.defenceText.visibility = visibleOrGone(binding.includeDefenceCheck.isChecked)
+                binding.driverExperienceEdit.visibility =  visibleOrGone(binding.includeDriverSkillCheck.isChecked)
             }
             binding.includeNameCheck.id -> {
                 binding.teamNameEdit.visibility = visibleOrGone(binding.includeNameCheck.isChecked)
@@ -294,8 +196,8 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
             binding.includeClimbCheck.id -> {
                 binding.climbGroup.visibility = visibleOrGone(binding.includeClimbCheck.isChecked)
             }
-            binding.includeSandstormNotesCheck.id -> {
-                binding.sandstormNotesGroup.visibility = visibleOrGone(binding.includeSandstormNotesCheck.isChecked)
+            binding.includeSandstormCheck.id -> {
+                binding.sandstormNotesGroup.visibility = visibleOrGone(binding.includeSandstormCheck.isChecked)
             }
             binding.includeWheelsCheck.id -> {
                 binding.wheelsEdit.visibility = visibleOrGone(binding.includeWheelsCheck.isChecked)
@@ -345,7 +247,7 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
         }
         if (binding.includeIssuesCheck.isChecked) {
             //sets up issues string based on text + checkboxes
-            if (!binding.hardwareIssueCheckbox.isChecked && !binding.softwareIssueCheckbox.isChecked && !binding.otherIssueCheckbox.isChecked) {
+            if (!binding.hardwareIssueCheckbox.isChecked && !binding.softwareIssueCheckbox.isChecked && binding.issuesEdit.text.toString().isEmpty()) {
                 team.issues = "None"
             } else {
                 if (binding.hardwareIssueCheckbox.isChecked) {
@@ -371,23 +273,18 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
         if (binding.includeNotesCheck.isChecked) {
             team.notes = binding.notesEdit.text.toString()
         }
-        if (binding.includeAutoCheck.isChecked) {
-            team.autonomous = binding.autoScoreSlider.progress
-        }
-        if (binding.includeConsistencyCheck.isChecked) {
-            team.consistency = binding.consistencyScoreSlider.progress
-        }
-        if (binding.includeDefenceCheck.isChecked) {
-            team.defence = binding.defenceScoreSlider.progress
-        }
-        if (binding.includeDriverSkillCheck.isChecked) {
-            team.driverSkill = binding.driverSkillScoreSlider.progress
-        }
-        if (binding.includeObjectiveCheck.isChecked) {
-            team.objectiveScore = binding.objectiveScoreSlider.progress
-        }
         if (binding.includeWheelsCheck.isChecked) {
             team.wheelType = binding.wheelsEdit.text.toString()
+        }
+        if (binding.includeDriverSkillCheck.isChecked) {
+            try {
+                team.driverSkill = binding.driverExperienceEdit.text.toString().toInt()
+            } catch (e: NumberFormatException) { //if left blank
+                team.driverSkill = null
+            }
+            if (team.number < 0) {
+                team.driverSkill = null
+            }
         }
         if (binding.includeCargoCheck.isChecked) {
             team.moveCargo = binding.moveCargoCheck.isChecked
@@ -428,7 +325,7 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
                 else -> 0
             }
         }
-        if (binding.includeSandstormNotesCheck.isChecked) {
+        if (binding.includeSandstormCheck.isChecked) {
             team.sandstormNotes = binding.sandstormNotesEdit.text.toString()
             team.sandstormMode = when {
                 binding.sandstormBlindModeRadio.isChecked -> 1
@@ -461,12 +358,13 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
             binding.notesEdit.text.clear()
             binding.sandstormNotesEdit.text.clear()
             binding.climbNotesEdit.text.clear()
+            binding.wheelsEdit.text.clear()
+            binding.driverExperienceEdit.text.clear()
+
             //reset check boxes
             binding.hardwareIssueCheckbox.isChecked = false
             binding.softwareIssueCheckbox.isChecked = false
             binding.otherIssueCheckbox.isChecked = false
-            //reset slider
-            resetSliders(5)
         }
         if (isNetworkAvailable()) {
             //attempts to upload data to server; if it fails, adds it to text file instead
