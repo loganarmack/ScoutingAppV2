@@ -27,7 +27,7 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
 
     private lateinit var binding: ActivityModifyTeamBinding
     private var mode = 0
-    private var expandedState: Boolean = true
+    private var expandedState: Boolean = false
     private val team: Team = Team()
     private val accessor: APIAccessor = APIAccessor()
 
@@ -113,9 +113,9 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
     }
 
     private fun modifyTeamModeInit() {
-        binding.newTeamTitleText.text = getString(R.string.modify_team)
         val oldTeam: Team = intent.getParcelableExtra(TEAM) ?: Team() //set team from previously selected stuff
         binding.teamNumberEdit.visibility = View.GONE
+        binding.newTeamTitleText.text = getString(R.string.modify_team_with_number, oldTeam.number)
 
         //set all data to match team
         binding.apply {
@@ -328,7 +328,7 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
             } catch (e: NumberFormatException) { //Shouldn't be possible, but just in case
                 Toast.makeText(
                     this@ModifyTeamActivity,
-                    "Error: Invalid team number! ${binding.teamNumberEdit.text}",
+                    getString(R.string.invalid_team_number),
                     Toast.LENGTH_SHORT
                 ).show()
                 return 1
@@ -336,7 +336,7 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
             if (team.number < 0) {
                 Toast.makeText(
                     this@ModifyTeamActivity,
-                    "Error: Invalid team number! ${binding.teamNumberEdit.text.toString().toInt()}",
+                    getString(R.string.invalid_team_number),
                     Toast.LENGTH_SHORT
                 ).show()
                 return 1
@@ -450,27 +450,27 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
         if (team.number < 1) { //shouldn't be possible unless selected team already had id < 1, but just in case
             Toast.makeText(
                 this@ModifyTeamActivity,
-                "Error: Invalid team number! ${binding.teamNumberEdit.text}",
+                getString(R.string.invalid_team_number),
                 Toast.LENGTH_SHORT
             ).show()
             return
         }
+        if (mode == 0) {
+            //clears all text input
+            binding.teamNameEdit.text.clear()
+            binding.teamNumberEdit.text.clear()
+            binding.issuesEdit.text.clear()
+            binding.notesEdit.text.clear()
+            binding.sandstormNotesEdit.text.clear()
+            binding.climbNotesEdit.text.clear()
+            //reset check boxes
+            binding.hardwareIssueCheckbox.isChecked = false
+            binding.softwareIssueCheckbox.isChecked = false
+            binding.otherIssueCheckbox.isChecked = false
+            //reset slider
+            resetSliders(5)
+        }
         if (isNetworkAvailable()) {
-            if (mode == 0) {
-                //clears all text input
-                binding.teamNameEdit.text.clear()
-                binding.teamNumberEdit.text.clear()
-                binding.issuesEdit.text.clear()
-                binding.notesEdit.text.clear()
-                binding.sandstormNotesEdit.text.clear()
-                binding.climbNotesEdit.text.clear()
-                //reset check boxes
-                binding.hardwareIssueCheckbox.isChecked = false
-                binding.softwareIssueCheckbox.isChecked = false
-                binding.otherIssueCheckbox.isChecked = false
-                //reset slider
-                resetSliders(5)
-            }
             //attempts to upload data to server; if it fails, adds it to text file instead
             val call: Call<Team> = accessor.apiService.createTeam(team)
             call.enqueue(object : Callback<Team> {
@@ -478,13 +478,13 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
                     if (response.isSuccessful) {
                         //server accepts team data
                         Toast.makeText(
-                            this@ModifyTeamActivity, "Successfully uploaded team data",
+                            this@ModifyTeamActivity, getString(R.string.successful_upload),
                             Toast.LENGTH_SHORT
                         ).show()
                     } else {
                         //server rejects team data
                         Toast.makeText(
-                            this@ModifyTeamActivity, "Error: Team data invalid",
+                            this@ModifyTeamActivity, getString(R.string.invalid_team_data),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -493,7 +493,7 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
                 override fun onFailure(call: Call<Team>, t: Throwable) {
                     Toast.makeText(
                         this@ModifyTeamActivity,
-                        "Data saved to text file.",
+                        getString(R.string.data_saved),
                         Toast.LENGTH_SHORT
                     ).show()
                     val path: File = filesDir
@@ -530,7 +530,7 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
         else {
             Toast.makeText(
                 this@ModifyTeamActivity,
-                "Data saved to text file.",
+                getString(R.string.data_saved),
                 Toast.LENGTH_SHORT
             ).show()
             val path: File = filesDir
@@ -540,7 +540,7 @@ class ModifyTeamActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener 
             val teamFile = File(letDirectory, "team${team.number}.json")
             val gson = Gson()
 
-            //only appends team number onto list if teamfile doesn't already exist
+            //only appends team number onto list if team file doesn't already exist
             if (!teamFile.exists()) {
                 outFile.appendText("${team.number}\n")
                 val output: String = gson.toJson(team)

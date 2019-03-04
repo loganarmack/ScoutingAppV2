@@ -45,7 +45,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:checked="true"
+            android:checked="false"
             android:onClick="includeCheck"
             android:text="@string/auto"
             android:textSize="13sp"
@@ -73,7 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:checked="true"
+            android:checked="false"
             android:onClick="includeCheck"
             android:text="@string/consistency_plain"
             android:textSize="13sp"
@@ -87,7 +87,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:checked="true"
+            android:checked="false"
             android:onClick="includeCheck"
             android:text="@string/objective_plain"
             android:textSize="13sp"
@@ -100,7 +100,7 @@
             android:id="@+id/include_driver_skill_check"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:checked="true"
+            android:checked="false"
             android:onClick="includeCheck"
             android:text="@string/driver_skill_plain"
             android:textSize="13sp"
@@ -115,7 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:checked="true"
+            android:checked="false"
             android:onClick="includeCheck"
             android:text="@string/defence_plain"
             android:textSize="13sp"
@@ -221,8 +221,8 @@
 
         <ImageButton
             android:id="@+id/expand_collapse_button"
-            android:layout_width="35dp"
-            android:layout_height="41dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -231,19 +231,43 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/include_sandstorm_notes_check"
-            app:srcCompat="@drawable/ic_keyboard_arrow_up" />
+            app:srcCompat="@drawable/ic_keyboard_arrow_down" />
+
+        <Button
+            android:id="@+id/save_button"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorAccent"
+            android:fontFamily="@font/roboto"
+            android:onClick="onClickSaveButton"
+            android:text="@string/save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <android.support.constraint.Group
+            android:id="@+id/include_checks_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="include_name_check,include_consistency_check,include_defence_check,include_notes_check,include_auto_check,include_driver_skill_check,include_objective_check,include_wheels_check,include_issues_check,include_sandstorm_notes_check,include_climb_check,include_cargo_check,include_hatch_check" />
 
         <ScrollView
             android:id="@+id/input_scroll"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="8dp"
             android:layout_weight="0.6"
             app:layout_constraintBottom_toTopOf="@id/save_button"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/expand_collapse_button"
-            tools:layout_editor_absoluteX="0dp">
+            app:layout_constraintVertical_bias="0.0">
 
             <android.support.constraint.ConstraintLayout
                 android:id="@+id/input_scroll_layout"
@@ -284,6 +308,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/objectives"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/wheels_edit" />
@@ -294,6 +319,7 @@
                     android:layout_height="wrap_content"
                     android:max="@integer/slider_max"
                     android:progress="5"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/objective_text" />
@@ -304,6 +330,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/consistency"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/objective_score_slider" />
@@ -314,6 +341,7 @@
                     android:layout_height="wrap_content"
                     android:max="@integer/slider_max"
                     android:progress="5"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/consistency_text" />
@@ -324,6 +352,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/driver_skill"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/consistency_score_slider" />
@@ -334,6 +363,7 @@
                     android:layout_height="wrap_content"
                     android:max="@integer/slider_max"
                     android:progress="5"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/driver_skill_text" />
@@ -344,6 +374,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/autonomous"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/driver_skill_score_slider" />
@@ -354,6 +385,7 @@
                     android:layout_height="wrap_content"
                     android:max="@integer/slider_max"
                     android:progress="5"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/autonomous_text" />
@@ -364,6 +396,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/defence"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/auto_score_slider" />
@@ -374,6 +407,7 @@
                     android:layout_height="wrap_content"
                     android:max="@integer/slider_max"
                     android:progress="5"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/defence_text" />
@@ -737,15 +771,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/issues_text" />
 
                 <CheckBox
-                    android:id="@+id/other_issue_checkbox"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/other"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/hardware_issue_checkbox" />
-
-                <CheckBox
                     android:id="@+id/software_issue_checkbox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -753,7 +778,18 @@
                     android:text="@string/software"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/other_issue_checkbox" />
+                    app:layout_constraintTop_toBottomOf="@+id/hardware_issue_checkbox" />
+
+
+                <CheckBox
+                    android:id="@+id/other_issue_checkbox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/other"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/software_issue_checkbox" />
 
                 <EditText
                     android:id="@+id/issues_edit"
@@ -767,7 +803,7 @@
                     android:inputType="textMultiLine"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/software_issue_checkbox" />
+                    app:layout_constraintTop_toBottomOf="@+id/other_issue_checkbox" />
 
 
                 <EditText
@@ -816,29 +852,6 @@
 
             </android.support.constraint.ConstraintLayout>
         </ScrollView>
-
-        <Button
-            android:id="@+id/save_button"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/colorAccent"
-            android:fontFamily="@font/roboto"
-            android:onClick="onClickSaveButton"
-            android:text="@string/save"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <android.support.constraint.Group
-            android:id="@+id/include_checks_group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:constraint_referenced_ids="include_name_check,include_consistency_check,include_defence_check,include_notes_check,include_auto_check,include_driver_skill_check,include_objective_check,include_wheels_check,include_issues_check,include_sandstorm_notes_check,include_climb_check,include_cargo_check,include_hatch_check" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

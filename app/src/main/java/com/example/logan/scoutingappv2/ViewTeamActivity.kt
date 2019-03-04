@@ -1,10 +1,12 @@
 package com.example.logan.scoutingappv2
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AlertDialog
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -39,7 +41,7 @@ class ViewTeamActivity : AppCompatActivity() {
             window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark)
         }
 
-        //sets up recyclerview
+        //sets up recycler view
         viewManager = LinearLayoutManager(this)
         viewAdapter = TeamAdapter(teams, this) {
             onCollectionClick(it) //sets onClick function for each item in the list
@@ -47,8 +49,17 @@ class ViewTeamActivity : AppCompatActivity() {
         val swipeHandler = object : SwipeToDeleteCallback(this) {
             override fun onSwiped(p0: RecyclerView.ViewHolder, p1: Int) {
                 val adapter = recyclerView.adapter as TeamAdapter
-                deleteTeam(p0.adapterPosition)
-                adapter.removeAt(p0.adapterPosition)
+                val confirmDeleteAlertBuilder = AlertDialog.Builder(this@ViewTeamActivity)
+                confirmDeleteAlertBuilder.setMessage(this@ViewTeamActivity.getString(R.string.confirm_delete))
+                confirmDeleteAlertBuilder.setPositiveButton(getString(R.string.yes)) { _, _ ->
+                    deleteTeam(p0.adapterPosition)
+                    adapter.removeAt(p0.adapterPosition)
+                }
+                confirmDeleteAlertBuilder.setNegativeButton(getString(R.string.no)) { _, _ ->
+                    adapter.notifyItemChanged(p0.adapterPosition) //redraws over delete
+                }
+                val confirmDeleteAlert = confirmDeleteAlertBuilder.create()
+                confirmDeleteAlert.show()
             }
         }
         recyclerView = findViewById<RecyclerView>(R.id.team_recycler).apply {
@@ -90,7 +101,7 @@ class ViewTeamActivity : AppCompatActivity() {
                     if (apiResponse == null) {
                         //Api returned no data but received request
                         progressBar.visibility = View.GONE
-                        toast("Failed to access the API!", this@ViewTeamActivity)
+                        toast(getString(R.string.failed_access_message), this@ViewTeamActivity)
                     }
                     //data is loaded successfully
                     else {
@@ -100,19 +111,20 @@ class ViewTeamActivity : AppCompatActivity() {
                         for (i in apiResponse) {
                             teams.add(i)
                         }
+                        teams.sortBy {it.number}
                         viewAdapter.notifyDataSetChanged()
                     }
                 }
                 else {
                     //server doesn't accept request
                     progressBar.visibility = View.GONE
-                    toast("An unknown error has occurred.", this@ViewTeamActivity)
+                    toast(getString(R.string.unknown_error), this@ViewTeamActivity)
                 }
             }
             //no internet
             override fun onFailure(call: Call<APITeamResponse>, t: Throwable) {
                 //TODO: Proper no internet page
-                toast("No internet connection!", this@ViewTeamActivity)
+                toast(getString(R.string.no_internet), this@ViewTeamActivity)
             }
         })
     }
@@ -139,12 +151,13 @@ class ViewTeamActivity : AppCompatActivity() {
                     val team: Team = gson.fromJson(teamFile.readText(), Team::class.java)
                     teams.add(team)
                 } catch (e: FileNotFoundException) {
-                    Log.d("MISSING_TEAM_FILE", "Missing file for team $i!")
+                    toast(getString(R.string.missing_team_file), this@ViewTeamActivity)
                 }
             }
+            teams.sortBy {it.number}
             viewAdapter.notifyDataSetChanged()
         } catch (e: FileNotFoundException) {
-            toast("There is no data stored!", this@ViewTeamActivity)
+            toast(getString(R.string.no_data), this@ViewTeamActivity)
         }
     }
 
@@ -172,14 +185,14 @@ class ViewTeamActivity : AppCompatActivity() {
                     } else {
                         //Error
                         Log.d("DELETE_TEAM", "Failed to delete team $i")
-                        toast("Failed to delete team $i", this@ViewTeamActivity)
+                        toast(getString(R.string.failed_to_delete, i), this@ViewTeamActivity)
                     }
                 }
 
                 override fun onFailure(call: Call<Team>, t: Throwable) {
                     //no response received for delete request
                     Log.d("DELETE_TEAM", "Failed to delete team $i")
-                    toast("Failed to delete team $i. Check your internet and try again!", this@ViewTeamActivity)
+                    toast(getString(R.string.failed_to_delete, i).plus(getString(R.string.check_internet)), this@ViewTeamActivity)
                 }
             })
         }

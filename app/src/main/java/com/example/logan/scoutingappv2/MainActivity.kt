@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity() {
 
         val file = File(letDirectory, "teams.txt")
         if (!file.exists()) {
-            toast("No data to push!", this@MainActivity)
+            toast(getString(R.string.no_data), this@MainActivity)
             return
         }
 
@@ -131,16 +131,11 @@ class MainActivity : AppCompatActivity() {
                             teamFile.delete()
                         } else {
                             //shouldn't occur, but exists just in case
-                            Toast.makeText(this@MainActivity, "Error: Team data invalid", Toast.LENGTH_SHORT)
-                                .show()
+                            toast(getString(R.string.invalid_team_data), this@MainActivity)
                         }
                         //all responses sent out have been received
                         if (callbackCount == counter && !displayedNoInternet) {
-                            Toast.makeText(
-                                this@MainActivity,
-                                "Successfully uploaded team data",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            toast(getString(R.string.successful_upload), this@MainActivity)
                             //deletes teams to upload file
                             file.delete()
                         }
@@ -148,11 +143,7 @@ class MainActivity : AppCompatActivity() {
 
                     override fun onFailure(call: Call<Team>, t: Throwable) {
                         if (!displayedNoInternet) {
-                            Toast.makeText(
-                                this@MainActivity,
-                                "Failed to upload team data! \n Check your internet connection and try again.",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            toast(getString(R.string.failed_to_upload).plus(getString(R.string.check_internet)), this@MainActivity)
                             displayedNoInternet = true
                         }
                     }
