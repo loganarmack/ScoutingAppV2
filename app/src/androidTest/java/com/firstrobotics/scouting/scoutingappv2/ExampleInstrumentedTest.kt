@@ -1,4 +1,4 @@
-package com.example.logan.scoutingappv2
+package com.firstrobotics.scouting.scoutingappv2
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

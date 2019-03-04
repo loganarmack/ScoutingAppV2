@@ -1,4 +1,4 @@
-package com.example.logan.scoutingappv2
+package com.firstrobotics.scouting.scoutingappv2
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView

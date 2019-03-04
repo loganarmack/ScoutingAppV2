@@ -842,7 +842,7 @@
                     android:id="@+id/sandstorm_notes_group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:constraint_referenced_ids="sandstorm_text,sandstorm_mode_radio_group,sandstorm_notes_edit,sandstorm_mode_text" />
+                    app:constraint_referenced_ids="sandstorm_text,sandstorm_mode_radio_group,sandstorm_notes_edit" />
 
                 <android.support.constraint.Group
                     android:id="@+id/issues_group"

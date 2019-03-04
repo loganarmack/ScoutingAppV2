@@ -1,7 +1,6 @@
-package com.example.logan.scoutingappv2
+package com.firstrobotics.scouting.scoutingappv2
 
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -15,7 +14,6 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.ProgressBar
-import android.widget.SimpleAdapter
 import android.widget.Toast
 import com.google.gson.Gson
 import retrofit2.Call
@@ -181,17 +179,17 @@ class ViewTeamActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<Team>, response: Response<Team>) {
                     if (response.isSuccessful) {
                         //Worked!
-                        Log.d("DELETE_TEAM", "Successfully deleted team $i")
+                        //Log.d("DELETE_TEAM", "Successfully deleted team $i")
                     } else {
                         //Error
-                        Log.d("DELETE_TEAM", "Failed to delete team $i")
+                        //Log.d("DELETE_TEAM", "Failed to delete team $i")
                         toast(getString(R.string.failed_to_delete, i), this@ViewTeamActivity)
                     }
                 }
 
                 override fun onFailure(call: Call<Team>, t: Throwable) {
                     //no response received for delete request
-                    Log.d("DELETE_TEAM", "Failed to delete team $i")
+                    //Log.d("DELETE_TEAM", "Failed to delete team $i")
                     toast(getString(R.string.failed_to_delete, i).plus(getString(R.string.check_internet)), this@ViewTeamActivity)
                 }
             })
@@ -222,10 +220,10 @@ class ViewTeamActivity : AppCompatActivity() {
                     }
                 }
                 else {
-                    Log.d("TEAM_FILE_DELETION","Attempt to delete non-existent team")
+                    //Log.d("TEAM_FILE_DELETION","Attempt to delete non-existent team")
                 }
             } catch (e: FileNotFoundException) {
-                Log.d("TEAM_FILE_DELETION","Attempt to delete non-existent team")
+                //Log.d("TEAM_FILE_DELETION","Attempt to delete non-existent team")
             }
         }
     }

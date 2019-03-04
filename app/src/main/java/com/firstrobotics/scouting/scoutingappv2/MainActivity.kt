@@ -1,4 +1,4 @@
-package com.example.logan.scoutingappv2
+package com.firstrobotics.scouting.scoutingappv2
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -7,7 +7,6 @@ import android.support.constraint.ConstraintLayout
 import android.util.Log
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,7 +15,7 @@ import java.io.File
 import java.io.FileNotFoundException
 import android.support.v4.content.ContextCompat
 import android.view.WindowManager
-import com.example.logan.scoutingappv2.ViewTeamActivity.Companion.toast
+import com.firstrobotics.scouting.scoutingappv2.ViewTeamActivity.Companion.toast
 
 
 class MainActivity : AppCompatActivity() {
@@ -150,7 +149,7 @@ class MainActivity : AppCompatActivity() {
                 })
             }
             catch (e: FileNotFoundException) {
-                Log.d("MISSING_TEAM_FILE", "Missing file for team $i!")
+                //Log.d("MISSING_TEAM_FILE", "Missing file for team $i!")
             }
         }
     }

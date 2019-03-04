@@ -1,4 +1,4 @@
-package com.example.logan.scoutingappv2
+package com.firstrobotics.scouting.scoutingappv2
 
 import org.junit.Test
 

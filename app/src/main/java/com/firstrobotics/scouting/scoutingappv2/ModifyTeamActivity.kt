@@ -1,4 +1,4 @@
-package com.example.logan.scoutingappv2
+package com.firstrobotics.scouting.scoutingappv2
 
 import android.animation.LayoutTransition
 import android.content.Context
@@ -6,14 +6,12 @@ import android.databinding.DataBindingUtil
 import android.net.ConnectivityManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.SeekBar
 import android.widget.Toast
-import com.example.logan.scoutingappv2.databinding.ActivityModifyTeamBinding
+import com.firstrobotics.scouting.scoutingappv2.databinding.ActivityModifyTeamBinding
 import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_modify_team.*
 import kotlinx.android.synthetic.main.activity_modify_team.view.*
 import retrofit2.Call
 import retrofit2.Callback
