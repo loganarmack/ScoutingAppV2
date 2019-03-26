@@ -95,4 +95,7 @@
     <string name="failed_to_upload">Failed to upload team data!</string>
     <string name="driver_experience">Driver experience (yrs)</string>
     <string name="invalid_driver_exp">Invalid driver experience!</string>
+    <string name="wheel_type_1">Wheel type 1</string>
+    <string name="wheel_type_2">Wheel type 2</string>
+    <string name="wheel_type_3">Wheel type 3</string>
 </resources>

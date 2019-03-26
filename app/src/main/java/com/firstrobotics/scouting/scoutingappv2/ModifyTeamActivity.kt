@@ -205,6 +205,14 @@ class ModifyTeamActivity : AppCompatActivity() {
         }
     }
 
+    //makes "other" wheel type editable if other radio button is clicked
+    fun onWheelTypeClick(view: View) {
+        when (view.id) {
+            binding.otherWheelTypeRadio.id -> binding.wheelsEdit.isEnabled = true
+            else -> binding.wheelsEdit.isEnabled = false
+        }
+    }
+
     private fun visibleOrGone(b: Boolean) = if (b) View.VISIBLE else View.GONE
 
     //hides/shows include checkboxes
@@ -274,7 +282,12 @@ class ModifyTeamActivity : AppCompatActivity() {
             team.notes = binding.notesEdit.text.toString()
         }
         if (binding.includeWheelsCheck.isChecked) {
-            team.wheelType = binding.wheelsEdit.text.toString()
+            team.wheelType = when {
+                binding.wheelType1Radio.isChecked -> getString(R.string.wheel_type_1)
+                binding.wheelType2Radio.isChecked -> getString(R.string.wheel_type_2)
+                binding.wheelType3Radio.isChecked -> getString(R.string.wheel_type_3)
+                else -> binding.wheelsEdit.text.toString()
+            }
         }
         if (binding.includeDriverSkillCheck.isChecked) {
             try {

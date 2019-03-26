@@ -231,19 +231,74 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/wheels_text"
+                    style="@style/data_input_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/type_of_wheels"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/team_name_edit" />
+
+                <RadioGroup
+                    android:id="@+id/wheels_radio_group"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/wheels_text">
+
+                    <RadioButton
+                        android:id="@+id/wheel_type_1_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="onWheelTypeClick"
+                        android:text="@string/wheel_type_1" />
+
+                    <RadioButton
+                        android:id="@+id/wheel_type_2_radio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="onWheelTypeClick"
+                        android:text="@string/wheel_type_2" />
+
+                    <RadioButton
+                        android:id="@+id/wheel_type_3_radio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="onWheelTypeClick"
+                        android:text="@string/wheel_type_3" />
+
+                    <RadioButton
+                        android:id="@+id/other_wheel_type_radio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="onWheelTypeClick"
+                        android:text="@string/other" />
+
+                </RadioGroup>
+
                 <EditText
                     android:id="@+id/wheels_edit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="4dp"
                     android:ems="10"
+                    android:enabled="false"
                     android:fontFamily="@font/roboto"
-                    android:hint="@string/type_of_wheels"
                     android:imeOptions="actionDone"
                     android:inputType="textPersonName"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@+id/driver_experience_edit"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/team_name_edit" />
+                    app:layout_constraintStart_toEndOf="@+id/wheels_radio_group" />
 
                 <EditText
                     android:id="@+id/driver_experience_edit"
@@ -256,8 +311,9 @@
                     android:imeOptions="actionDone"
                     android:inputType="number"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/wheels_edit" />
+                    app:layout_constraintTop_toBottomOf="@+id/wheels_radio_group" />
 
                 <!-- Cargo group -->
                 <TextView
