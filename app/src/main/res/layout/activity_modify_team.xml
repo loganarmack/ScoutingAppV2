@@ -725,6 +725,12 @@
                     app:layout_constraintTop_toBottomOf="@id/issues_edit" />
 
                 <android.support.constraint.Group
+                    android:id="@+id/wheels_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:constraint_referenced_ids="wheels_edit, wheels_radio_group, wheels_text" />
+
+                <android.support.constraint.Group
                     android:id="@+id/cargo_group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

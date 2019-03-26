@@ -113,7 +113,7 @@ class ModifyTeamActivity : AppCompatActivity() {
             }
             if (oldTeam.wheelType == null) {
                 binding.includeWheelsCheck.isChecked = false
-                binding.wheelsEdit.visibility = visibleOrGone(binding.includeWheelsCheck.isChecked)
+                binding.wheelsGroup.visibility = visibleOrGone(binding.includeWheelsCheck.isChecked)
             }
 
             //sets edit text boxes to team data
@@ -200,7 +200,7 @@ class ModifyTeamActivity : AppCompatActivity() {
                 binding.sandstormNotesGroup.visibility = visibleOrGone(binding.includeSandstormCheck.isChecked)
             }
             binding.includeWheelsCheck.id -> {
-                binding.wheelsEdit.visibility = visibleOrGone(binding.includeWheelsCheck.isChecked)
+                binding.wheelsGroup.visibility = visibleOrGone(binding.includeWheelsCheck.isChecked)
             }
         }
     }
