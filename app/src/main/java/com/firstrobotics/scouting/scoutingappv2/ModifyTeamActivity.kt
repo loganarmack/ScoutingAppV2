@@ -119,11 +119,21 @@ class ModifyTeamActivity : AppCompatActivity() {
             //sets edit text boxes to team data
             teamNameEdit.setText(oldTeam.name)
             notesEdit.setText(oldTeam.notes)
-            wheelsEdit.setText(oldTeam.wheelType)
             sandstormNotesEdit.setText(oldTeam.sandstormNotes)
             climbNotesEdit.setText(oldTeam.climbNotes)
 
-            //checks sandstorm mode, climb level, and cargo/hatch max level
+            //checks sandstorm mode, climb level, and cargo/hatch max level and wheel type
+            when (oldTeam.wheelType) {
+                getString(R.string.wheel_type_1) -> binding.wheelType1Radio.isChecked = true
+                getString(R.string.wheel_type_1) -> binding.wheelType1Radio.isChecked = true
+                getString(R.string.wheel_type_1) -> binding.wheelType1Radio.isChecked = true
+                getString(R.string.wheel_type_1) -> binding.wheelType1Radio.isChecked = true
+                else -> {
+                    binding.otherWheelTypeRadio.isChecked = true
+                    binding.wheelsEdit.setText(oldTeam.wheelType)
+                    binding.wheelsEdit.isEnabled = true
+                }
+            }
             when (oldTeam.sandstormMode) {
                 1 -> sandstormBlindModeRadio.isChecked = true
                 2 -> sandstormCameraModeRadio.isChecked = true
