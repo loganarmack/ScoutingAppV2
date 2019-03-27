@@ -243,7 +243,7 @@
 
                 <RadioGroup
                     android:id="@+id/wheels_radio_group"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:orientation="vertical"
@@ -260,7 +260,7 @@
 
                     <RadioButton
                         android:id="@+id/wheel_type_2_radio"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="onWheelTypeClick"
@@ -268,19 +268,27 @@
 
                     <RadioButton
                         android:id="@+id/wheel_type_3_radio"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="onWheelTypeClick"
                         android:text="@string/wheel_type_3" />
 
                     <RadioButton
-                        android:id="@+id/other_wheel_type_radio"
-                        android:layout_width="match_parent"
+                        android:id="@+id/wheel_type_4_radio"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:onClick="onWheelTypeClick"
-                        android:text="@string/other" />
+                        android:text="@string/wheel_type_4" />
+
+                    <RadioButton
+                        android:id="@+id/other_wheel_type_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:onClick="onWheelTypeClick"
+                        android:text="@string/other_colon" />
 
                 </RadioGroup>
 
@@ -288,17 +296,15 @@
                     android:id="@+id/wheels_edit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginBottom="4dp"
                     android:ems="10"
                     android:enabled="false"
                     android:fontFamily="@font/roboto"
                     android:imeOptions="actionDone"
                     android:inputType="textPersonName"
                     android:textSize="14sp"
-                    app:layout_constraintBottom_toTopOf="@+id/driver_experience_edit"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/wheels_radio_group" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/wheels_radio_group" />
 
                 <EditText
                     android:id="@+id/driver_experience_edit"
@@ -313,7 +319,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/wheels_radio_group" />
+                    app:layout_constraintTop_toBottomOf="@+id/wheels_edit" />
 
                 <!-- Cargo group -->
                 <TextView

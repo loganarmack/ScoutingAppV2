@@ -286,6 +286,7 @@ class ModifyTeamActivity : AppCompatActivity() {
                 binding.wheelType1Radio.isChecked -> getString(R.string.wheel_type_1)
                 binding.wheelType2Radio.isChecked -> getString(R.string.wheel_type_2)
                 binding.wheelType3Radio.isChecked -> getString(R.string.wheel_type_3)
+                binding.wheelType4Radio.isChecked -> getString(R.string.wheel_type_4)
                 else -> binding.wheelsEdit.text.toString()
             }
         }

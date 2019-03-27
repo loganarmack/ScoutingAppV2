@@ -95,7 +95,9 @@
     <string name="failed_to_upload">Failed to upload team data!</string>
     <string name="driver_experience">Driver experience (yrs)</string>
     <string name="invalid_driver_exp">Invalid driver experience!</string>
-    <string name="wheel_type_1">Wheel type 1</string>
-    <string name="wheel_type_2">Wheel type 2</string>
-    <string name="wheel_type_3">Wheel type 3</string>
+    <string name="wheel_type_1">Kit of parts</string>
+    <string name="wheel_type_2">Omni/mechanum</string>
+    <string name="wheel_type_3">Shopping cart</string>
+    <string name="wheel_type_4">Pneumatic</string>
+    <string name="other_colon">Other:</string>
 </resources>
