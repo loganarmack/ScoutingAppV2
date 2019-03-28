@@ -125,13 +125,16 @@ class ModifyTeamActivity : AppCompatActivity() {
             //checks sandstorm mode, climb level, and cargo/hatch max level and wheel type
             when (oldTeam.wheelType) {
                 getString(R.string.wheel_type_1) -> binding.wheelType1Radio.isChecked = true
-                getString(R.string.wheel_type_1) -> binding.wheelType1Radio.isChecked = true
-                getString(R.string.wheel_type_1) -> binding.wheelType1Radio.isChecked = true
-                getString(R.string.wheel_type_1) -> binding.wheelType1Radio.isChecked = true
+                getString(R.string.wheel_type_2) -> binding.wheelType2Radio.isChecked = true
+                getString(R.string.wheel_type_3) -> binding.wheelType3Radio.isChecked = true
+                getString(R.string.wheel_type_4) -> binding.wheelType4Radio.isChecked = true
+                getString(R.string.wheel_type_5) -> binding.wheelType5Radio.isChecked = true
                 else -> {
-                    binding.otherWheelTypeRadio.isChecked = true
-                    binding.wheelsEdit.setText(oldTeam.wheelType)
-                    binding.wheelsEdit.isEnabled = true
+                    if (oldTeam.wheelType != "" && oldTeam.wheelType != null) {
+                        binding.otherWheelTypeRadio.isChecked = true
+                        binding.wheelsEdit.setText(oldTeam.wheelType)
+                        binding.wheelsEdit.isEnabled = true
+                    }
                 }
             }
             when (oldTeam.sandstormMode) {
@@ -172,6 +175,8 @@ class ModifyTeamActivity : AppCompatActivity() {
                     hatchPickupHumanCheck.isChecked = true
                 }
             }
+
+            binding.driverExperienceEdit.setText(oldTeam.driverSkill.toString())
 
             //sets whether or not robot can pick up hatch/cargo
             moveCargoCheck.isChecked = oldTeam.moveCargo ?: false
@@ -297,6 +302,7 @@ class ModifyTeamActivity : AppCompatActivity() {
                 binding.wheelType2Radio.isChecked -> getString(R.string.wheel_type_2)
                 binding.wheelType3Radio.isChecked -> getString(R.string.wheel_type_3)
                 binding.wheelType4Radio.isChecked -> getString(R.string.wheel_type_4)
+                binding.wheelType5Radio.isChecked -> getString(R.string.wheel_type_5)
                 else -> binding.wheelsEdit.text.toString()
             }
         }
