@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil
 import android.net.ConnectivityManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.Toolbar
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.SeekBar
@@ -48,6 +49,12 @@ class ModifyTeamActivity : AppCompatActivity() {
         }
     }
 
+    //go back when back arrow is pressed
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
+    }
+
     //adds animation when returning to main activity
     override fun onBackPressed() {
         super.onBackPressed()
@@ -55,14 +62,26 @@ class ModifyTeamActivity : AppCompatActivity() {
     }
 
     private fun newTeamModeInit() {
-        binding.newTeamTitleText.text = getString(R.string.new_team)
-        binding.teamNumberEdit.visibility = View.VISIBLE
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        toolbar.title = getString(R.string.new_team)
+        setSupportActionBar(toolbar)
+
+        //add back button
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     private fun modifyTeamModeInit() {
         val oldTeam: Team = intent.getParcelableExtra(TEAM) ?: Team() //set team from previously selected stuff
         binding.teamNumberEdit.visibility = View.GONE
-        binding.newTeamTitleText.text = getString(R.string.modify_team_with_number, oldTeam.number)
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        toolbar.title = getString(R.string.modify_team_with_number, oldTeam.number)
+        setSupportActionBar(toolbar)
+
+        //add back button
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //set all data to match team
         binding.apply {

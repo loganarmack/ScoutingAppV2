@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.Toolbar
 import android.support.v7.widget.helper.ItemTouchHelper
 import android.util.Log
 import android.view.View
@@ -33,11 +34,14 @@ class ViewTeamActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_team)
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark)
-        }
+        //sets title of activity
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        toolbar.title = getString(R.string.view_saved_teams)
+        setSupportActionBar(toolbar)
+
+        //add back button
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //sets up recycler view
         viewManager = LinearLayoutManager(this)
@@ -74,6 +78,12 @@ class ViewTeamActivity : AppCompatActivity() {
             0 -> loadTeamsFromInternet()
             1 -> loadTeamsFromFile()
         }
+    }
+
+    //go back when back arrow is pressed
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 
     //adds animation when returning to view activity
@@ -127,7 +137,7 @@ class ViewTeamActivity : AppCompatActivity() {
         })
     }
 
-    //loads teams into recyclerview from files
+    //loads teams into recycler view from files
     private fun loadTeamsFromFile() {
         //initializes file directory
         val path: File = filesDir

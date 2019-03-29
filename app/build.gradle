@@ -8,7 +8,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.firstrobotics.scouting.scoutingappv2"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 3
         versionName "1.2"

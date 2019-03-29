@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/icon_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name="com.firstrobotics.scouting.scoutingappv2.MainActivity"

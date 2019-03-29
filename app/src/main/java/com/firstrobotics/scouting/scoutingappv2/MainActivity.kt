@@ -14,6 +14,7 @@ import retrofit2.Response
 import java.io.File
 import java.io.FileNotFoundException
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.Toolbar
 import android.view.WindowManager
 import com.firstrobotics.scouting.scoutingappv2.ViewTeamActivity.Companion.toast
 
@@ -29,14 +30,9 @@ class MainActivity : AppCompatActivity() {
         val viewSavedButton = findViewById<ConstraintLayout>(R.id.view_saved_button)
         val pushButton = findViewById<ConstraintLayout>(R.id.push_button)
 
-        val window = this.window
-
-        //sets color of status bar if possible
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.statusBarColor = ContextCompat.getColor(this, R.color.colorPrimaryDark)
-        }
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        toolbar.title = getString(R.string.app_name)
+        setSupportActionBar(toolbar)
 
         newTeamButton.apply {
             setOnClickListener {
