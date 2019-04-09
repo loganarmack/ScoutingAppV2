@@ -20,4 +20,4 @@ spreadsheet for easy analysis.
 
 ### How can I run the app?
 
-The apk for the app can be found [here](https://www.google.ca)
+The apk for the app can be found [here](https://github.com/loganarmack/ScoutingAppV2/blob/master/app/release/app-release.apk).
